@@ -9,7 +9,7 @@
 BOT_TOKEN = YOUR_VKBOT_TOKEN_HERE
 GROUP_ID = YOUR_TARGET_VKCHAT_ID_HERE
 ```
-**Где:***
+**Где:**
 *  **BOT_TOKEN** - ключ доступа от API VKontakte для вашего сообщества
 *  **GROUP_ID** - числовой идентификатор чата, который будет модерировать бот
 ## License
