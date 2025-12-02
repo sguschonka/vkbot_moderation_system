@@ -126,7 +126,7 @@ def load_and_prepare_dataset(csv_path):
                     "label": 0,
                     "has_insult": extract_insults(clean_text),
                     "has_abuse": extract_abuse_words(clean_text),
-                    "has_toxic_emoji": extract_toxic_emojis(text),
+                    "has_toxic_emoji": extract_toxic_emojis(clean_text),
                 }
             )
 
@@ -140,7 +140,7 @@ def load_and_prepare_dataset(csv_path):
                     "label": 1,
                     "has_insult": extract_insults(clean_text),
                     "has_abuse": extract_abuse_words(clean_text),
-                    "has_toxic_emoji": extract_toxic_emojis(text),
+                    "has_toxic_emoji": extract_toxic_emojis(clean_text),
                 }
             )
 
@@ -214,3 +214,4 @@ def process_model():
 
     # 5. Сохраняем модель
     save_model(clf)
+
