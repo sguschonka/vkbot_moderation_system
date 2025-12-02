@@ -28,13 +28,6 @@ class VKBase:
         self.longpoll = VkBotLongPoll(self.vk_session, group_id)
         self.vk = self.vk_session.get_api()
 
-    def make_api_call(self, method, **params):
-        try:
-            return self.vk_session.method(method, params)
-        except Exception as e:
-            logger.error(f"Ошибка API: {e}")
-            return None
-
 
 class VKBot(VKBase):
     def __init__(self, token, group_id):
@@ -191,3 +184,4 @@ class VKBot(VKBase):
         except Exception as e:
             logger.error(f"Ошибка при предсказании: {e}")
             return "is_normal"
+
