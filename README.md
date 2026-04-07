@@ -5,7 +5,7 @@
 
 СИСТЕМА АВТОМАТИЧЕСКОЙ МОДЕРАЦИИ СООБЩЕНИЙ ДЛЯ СОЦИАЛЬНОЙ СЕТИ ВКОНТАКТЕ НА ОСНОВЕ МАШИННОГО ОБУЧЕНИЯ
 
-Целью машинного обучения является – научить машину (точнее будет сказать – программу) решать задачу, предъявив ей несколько примеров с правильным и неправильным решением. Алгоритмы машинного обучения позволяют автоматизировать рутинные процессы. В данной статье будет рассмотрен процесс создания полезного чат-бота для ВКонтакте, автоматически детектирующего «токсичные» сообщения, на основе алгоритма логистической регрессии с помощью Python.
+Статья посвящена созданию чат-бота для автоматического обнаружения токсичных сообщений в социальной сети ВКонтакте. Для классификации применяется алгоритм логистической регрессии, реализованный на языке программирования Python. Приводится описание подготовки данных, выбора признаков, обучения модели и интеграции бота с VK API. Точность классификации составляет 88%, что подтверждает эффективность предложенного подхода.
 Ключевые слова: машинное обучение, Python, классификация, логистическая регрессия, данные.
 
 Alexander I. Klepikov
@@ -13,7 +13,7 @@ Omsk State Transport University (OSTU), Omsk, the Russian Federation
 
 AUTOMATIC MESSAGE MODERATION SYSTEM FOR THE VKONTAKTE SOCIAL NETWORK BASED ON MACHINE LEARNING
 
-The goal of machine learning is to teach a machine (or more accurately, a program) to solve a task by presenting it with several examples of correct and incorrect solutions. Machine learning algorithms make it possible to automate routine processes. This article will review the process of creating a useful chatbot for VKontakte that automatically detects «toxic» messages, using a logistic regression algorithm in Python.
+This article is devoted to the creation of a chatbot for automatically detecting toxic messages in the VKontakte social network. A logistic regression algorithm implemented in the Python programming language is used for classification. The article describes the data preparation process, feature selection, model training, and bot integration with the VK API. The classification accuracy is 88%, which confirms the effectiveness of the proposed approach.
 Keywords: machine learning, Python, classification, logistic regression, data.
 
 ### Перед началом необходимо создать файл ".env", содержащий переменные окружения, а именно:
