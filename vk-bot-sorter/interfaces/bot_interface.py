@@ -174,7 +174,7 @@ class VKBot(VKBase):
 
             # Детальное логирование
             logger.info(
-                f"Признаки: маты={insult_count}, эмодзи={emoji_count}, оскорбления={abuse_count}"
+                f"Признаки: нецензурная лексика={insult_count}, эмодзи={emoji_count}, оскорбления={abuse_count}"
             )
             logger.info(f"Результат: {result}, Уверенность: {confidence:.3f}")
             logger.info(
@@ -184,4 +184,3 @@ class VKBot(VKBase):
         except Exception as e:
             logger.error(f"Ошибка при предсказании: {e}")
             return "is_normal"
-

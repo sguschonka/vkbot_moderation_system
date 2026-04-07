@@ -55,7 +55,7 @@ abuse_words = load_abuse_word()
 
 
 def extract_insults(text):
-    """Считает количество матерных слов в тексте"""
+    """Считает количество слов нецензурной лексики в тексте"""
     if not isinstance(text, str) or not text.strip():
         return 0
 
@@ -74,7 +74,7 @@ def extract_insults(text):
 
 
 def extract_abuse_words(text):
-    """Считает количество матерных слов в тексте"""
+    """Считает количество оскорблений в тексте"""
     if not isinstance(text, str) or not text.strip():
         return 0
 
@@ -93,7 +93,7 @@ def extract_abuse_words(text):
 
 
 def extract_toxic_emojis(text):
-    """Считает количество матерных слов в тексте"""
+    """Считает количество токсичных эмодзи в тексте"""
     if not isinstance(text, str):
         return 0
 
@@ -148,47 +148,7 @@ def load_and_prepare_dataset(csv_path):
     return df_processed
 
 
-def test_different_models():
-    """Тестируем разные модели на тех же данных"""
-    stats = []
-
-    df_processed = load_and_prepare_dataset(
-        "interfaces/data/toxic_comments_with_emojis.csv"
-    )
-    X = df_processed[["has_insult", "has_abuse", "has_toxic_emoji"]]
-    y = df_processed["label"]
-
-    from sklearn.linear_model import LogisticRegression
-
-    models = {
-        "KNN": neighbors.KNeighborsClassifier(n_neighbors=12),
-        "LogisticRegression": LogisticRegression(),
-    }
-
-    for name, model in models.items():
-        cv_score = cross_val_score(
-            model, X, y, cv=5, scoring="accuracy"
-        ).mean()
-
-        X_train, X_test, y_train, y_test = train_test_split(
-            X, y, test_size=0.2, random_state=2025, stratify=y
-        )
-        model.fit(X_train, y_train)
-        single_score = model.score(X_test, y_test)
-
-        stats.append(
-            f"{name}: CV={cv_score:.4f}, Single={single_score:.4f}, Diff={single_score - cv_score:.4f}"
-        )
-    return stats
-
-
-# Обновленная основная функция
 def process_model():
-    # Протестируем для KNN классификатора и логистической регрессии, используя перекрестную проверку
-    models_stats = test_different_models()
-    for stat in models_stats:
-        print(f"{stat}")
-
     # Загрузка датасета
     df_processed = load_and_prepare_dataset(
         "interfaces/data/toxic_comments_with_emojis.csv"
@@ -201,17 +161,15 @@ def process_model():
     X = df_processed[["has_insult", "has_abuse", "has_toxic_emoji"]]
     y = df_processed["label"]
 
-    # Разделение на train/test
+    # Разделение на train/test (80/20)
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=2025
+        X, y, test_size=0.2, random_state=2025, stratify=y
     )
-
     print(f"Размер тестовой выборки: {len(X_test)}")
 
-    # Простая визуализация
-    clf.fit(X_train, y_train)  # Переобучаем модель
+    # Обучение
+    clf.fit(X_train, y_train)
+
+    # Визуализация и сохранение
     plot_simple_test_metrics(clf, X_test, y_test)
-
-    # 5. Сохраняем модель
     save_model(clf)
-
